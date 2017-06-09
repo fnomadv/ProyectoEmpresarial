@@ -19,8 +19,11 @@ public class Empleado {
 	private String celular;
 	
 	@ManyToOne
-	private Departamento departamentos = new Departamento();
+	private Departamento departamento = new Departamento();
 
+	@ManyToOne
+	private Cargo cargo = new Cargo();
+	
 	public String getCelular() {
 		return celular;
 	}
@@ -62,11 +65,27 @@ public class Empleado {
 	}
 
 	public Departamento getDepartamentos() {
-		return departamentos;
+		return departamento;
 	}
 
-	public void setDepartamentos(Departamento departamentos) {
-		this.departamentos = departamentos;
+	public void setDepartamentos(Departamento departamento) {
+		this.departamento = departamento;
+	}
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
 	}
 
 }

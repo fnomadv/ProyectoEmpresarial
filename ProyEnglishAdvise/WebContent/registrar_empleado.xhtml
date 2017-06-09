@@ -31,7 +31,7 @@
 	    			requiredMessage="El campo apellido es obligatorio"></h:inputText>
 	    		<h:message for="apellido"></h:message>
 	    		
-	    		<h:outputText value="Dni"></h:outputText>
+	    		<h:outputText value="DNI"></h:outputText>
 	    		<h:inputText id="dni" 
 	    			value="#{empleadoMB.empleado.dni}"
 	    			required="true"
@@ -105,7 +105,7 @@
 	   			#{m.departamentos.nombre}
 		   	</h:column>
 	   </h:dataTable>
-	    
+	   <h:link outcome="welcome">Volver</h:link><br></br>
 	</ui:define>
 	
 </ui:composition>
