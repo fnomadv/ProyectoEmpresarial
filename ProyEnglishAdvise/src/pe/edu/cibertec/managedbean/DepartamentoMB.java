@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import pe.edu.cibertec.domain.Departamento;
-import pe.edu.cibertec.domain.Empleado;
 import pe.edu.cibertec.util.JPAUtil;
 
 @ManagedBean

@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import pe.edu.cibertec.domain.Cargo;
 import pe.edu.cibertec.domain.Departamento;
 import pe.edu.cibertec.domain.Empleado;
 import pe.edu.cibertec.util.JPAUtil;
@@ -23,6 +24,8 @@ public class EmpleadoMB {
 	private List<Empleado> empleados = new ArrayList<Empleado>();
 	
 	private List<Departamento> departamentos = new ArrayList<>();
+	
+	private List<Cargo> cargos = new ArrayList<>();
 	
 //	public EmpleadoMB(){
 //		EntityManager em = JPAUtil.getEntityManager();
@@ -94,5 +97,15 @@ public class EmpleadoMB {
 	public void setDepartamentos(List<Departamento> departamentos) {
 		this.departamentos = departamentos;
 	}
-	
+
+	public List<Cargo> getCargos() {
+		EntityManager em = JPAUtil.getEntityManager();
+		cargos = em.createQuery("from Cargo",Cargo.class).getResultList();
+		return cargos;
+	}
+
+	public void setCargos(List<Cargo> cargos) {
+		this.cargos = cargos;
+	}
+
 }
