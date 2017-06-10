@@ -17,6 +17,9 @@ public class CargoMB {
 	private Cargo cargo = new Cargo();
 	private List<Cargo> cargos = new ArrayList<Cargo>();
 
+	public CargoMB(){
+		EntityManager em = JPAUtil.getEntityManager();
+	}
 	public Cargo getCargo() {
 		return cargo;
 	}

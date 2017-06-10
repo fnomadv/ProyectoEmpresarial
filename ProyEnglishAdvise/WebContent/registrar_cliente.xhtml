@@ -19,82 +19,49 @@
 	    		
 	    		<h:outputText value="Nombres"></h:outputText>
 	    		<h:inputText id="nombres" 
-	    			value="#{empleadoMB.empleado.nombres}"
+	    			value="#{clienteMB.cliente.nombres}"
 	    			required="true"
 	    			requiredMessage="El campo nombres es obligatorio"></h:inputText>
 	    		<h:message for="nombres" style="color:red"></h:message>
 	    		
 	    		<h:outputText value="Apellidos"></h:outputText>
 	    		<h:inputText id="apellidos" 
-	    			value="#{empleadoMB.empleado.apellidos}"
+	    			value="#{clienteMB.cliente.apellidos}"
 	    			required="true"
 	    			requiredMessage="El campo apellido es obligatorio"></h:inputText>
 	    		<h:message for="apellido"></h:message>
 	    		
 	    		<h:outputText value="DNI"></h:outputText>
 	    		<h:inputText id="dni" 
-	    			value="#{empleadoMB.empleado.dni}"
+	    			value="#{clienteMB.cliente.dni}"
 	    			required="true"
 	    			requiredMessage="El campo dni es obligatorio"></h:inputText>
 	    		<h:message for="dni"></h:message>
 	    		
-	    		<h:outputText value="Celular"></h:outputText>
-	    		<h:inputText id="celular" 
-	    			value="#{empleadoMB.empleado.celular}"
+	    		<h:outputText value="Telefono"></h:outputText>
+	    		<h:inputText id="telefono" 
+	    			value="#{clienteMB.cliente.telefono}"
 	    			required="true"
-	    			requiredMessage="El campo celular es obligatorio"></h:inputText>
-	    		<h:message for="celular"></h:message>
-	    		
-	    		<h:outputText value="Departamento"></h:outputText>
-	    		<h:selectOneMenu id="departamento" 
-	    				value="#{empleadoMB.empleado.departamento.id}">
-	    			<f:selectItems value="#{empleadoMB.departamentos}" 
-	    							var="d" itemLabel="#{d.nombre}"
-	    									itemValue="#{d.id}">
-	    				
-	    			</f:selectItems>
-	    		</h:selectOneMenu>
-	    		<h:message for="departamento"></h:message>
+	    			requiredMessage="El campo telefono es obligatorio"></h:inputText>
+	    		<h:message for="telefono"></h:message>
 	    		
 	    		<h:outputText value="Cargo"></h:outputText>
 	    		<h:selectOneMenu id="cargo" 
-	    				value="#{empleadoMB.empleado.cargo.id}">
-	    			<f:selectItems value="#{empleadoMB.cargos}" 
+	    				value="#{clienteMB.cliente.cargo.id}">
+	    			<f:selectItems value="#{clienteMB.cargos}" 
 	    							var="d" itemLabel="#{d.nombre}"
 	    									itemValue="#{d.id}">
-	    				
 	    			</f:selectItems>
 	    		</h:selectOneMenu>
 	    		<h:message for="cargo"></h:message>
-	    		
-<!-- 	    		<h:outputText value="Apellidos"></h:outputText> -->
-<!-- 	    		<h:selectOneMenu id="apellido"  -->
-<!-- 	    				value="#{laptopMB.laptop.marca.id}"> -->
-<!-- 	    			<f:selectItems value="#{laptopMB.marcas}"  -->
-<!-- 	    							var="d" itemLabel="#{d.nombre}" -->
-<!-- 	    									itemValue="#{d.id}"> -->
-	    				
-<!-- 	    			</f:selectItems> -->
-<!-- 	    		</h:selectOneMenu> -->
-<!-- 	    		<h:message for="marcaId"></h:message> -->
-	    	
-<!-- 	    		<h:outputText value="Tipo de Compra"></h:outputText> -->
-<!-- 	    		<h:selectOneMenu id="tipoCompra" value="#{laptopMB.laptop.tipoCompra}"> -->
-<!-- 	    			<f:selectItem itemValue="N" itemLabel="Normal"> -->
-<!-- 	    			</f:selectItem> -->
-<!-- 	    			<f:selectItem itemValue="I" itemLabel="Internet"> -->
-<!-- 	    			</f:selectItem> -->
-<!-- 	    		</h:selectOneMenu> -->
-<!-- 	    		<h:message for="tipoCompra"></h:message> -->
-
 	    	
 	    	</h:panelGrid> 
 	    		
-	    		<h:commandButton value="Guardar" action="#{empleadoMB.guardar}"></h:commandButton>
+	    		<h:commandButton value="Guardar" action="#{clienteMB.guardar}"></h:commandButton>
 
 	   
 	    </h:form>
-	    <h:dataTable value="#{empleadoMB.empleados}" var="m" border="1">
+	    <h:dataTable value="#{clienteMB.clientes}" var="m" border="1">
 		   	<h:column>
 		   		<f:facet name="header">Nombres</f:facet>
 		   		#{m.nombres}
@@ -108,12 +75,8 @@
 	 	   		#{m.dni}
 		   	</h:column>
 		   	<h:column>
-		   		<f:facet name="header">Celular</f:facet>
-	   			#{m.celular}
-		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">Departamento</f:facet>
-	   			#{m.departamento.nombre}
+		   		<f:facet name="header">Telefono</f:facet>
+	   			#{m.telefono}
 		   	</h:column>
 		   	<h:column>
 		   		<f:facet name="header">Cargo</f:facet>

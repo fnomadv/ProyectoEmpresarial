@@ -21,9 +21,9 @@ public class DepartamentoMB {
 
 	private List<Departamento> departamentos = new ArrayList<>();
 
-//	public DepartamentoMB() {
-//		EntityManager em = JPAUtil.getEntityManager();
-//	}
+	public DepartamentoMB() {
+		EntityManager em = JPAUtil.getEntityManager();
+	}
 
 	public void guardarDepartamento(){
 		EntityManager em = JPAUtil.getEntityManager();

@@ -11,51 +11,48 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import pe.edu.cibertec.domain.Cargo;
-import pe.edu.cibertec.domain.Departamento;
-import pe.edu.cibertec.domain.Empleado;
+import pe.edu.cibertec.domain.Cliente;
 import pe.edu.cibertec.util.JPAUtil;
 
 @ManagedBean
 @SessionScoped
-public class EmpleadoMB {
+public class ClienteMB {
 
-	private Empleado empleado = new Empleado();
+	private Cliente cliente = new Cliente();
 	
-	private List<Empleado> empleados = new ArrayList<Empleado>();
-	
-	private List<Departamento> departamentos = new ArrayList<>();
+	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
 	private List<Cargo> cargos = new ArrayList<>();
 	
-	public EmpleadoMB(){
-		EntityManager em = JPAUtil.getEntityManager();
-	}
+//	public ClienteMB(){
+//		EntityManager em = JPAUtil.getEntityManager();
+//	}
 	
-	public void guardarEmpleado(){
+	public void guardarCliente(){
 		EntityManager em = JPAUtil.getEntityManager();
 		
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();
-			em.merge(empleado);
+			em.merge(cliente);
 		tx.commit();
 	}
 	
 	public String guardar(){
 		
-		guardarEmpleado();
+		guardarCliente();
 		
 		FacesMessage message = 
 				new FacesMessage("Se guardó correctamente",
-						"La laptop se guardó de manera satisfactoria");
+						"El cliente se guardó de manera satisfactoria");
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, message);
 		
-		empleado = new Empleado();
+		cliente = new Cliente();
 		
 		
-		return "registrar_empleado";
+		return "registrar_cliente";
 	}
 	
 	/*
@@ -68,34 +65,23 @@ public class EmpleadoMB {
 		empleado = new Empleado();
 		return "registro_empleado";
 	}*/
-	
 
-	public Empleado getEmpleado() {
-		return empleado;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setEmpleado(Empleado empleado) {
-		this.empleado = empleado;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public List<Empleado> getEmpleados() {
+	public List<Cliente> getClientes() {
 		EntityManager em = JPAUtil.getEntityManager();
-		empleados = em.createQuery("from Empleado",Empleado.class).getResultList();
-		return empleados;
+		clientes= em.createQuery("from Cliente",Cliente.class).getResultList();
+		return clientes;
 	}
 
-	public void setEmpleados(List<Empleado> empleados) {
-		this.empleados = empleados;
-	}
-	
-	public List<Departamento> getDepartamentos() {
-		EntityManager em = JPAUtil.getEntityManager();
-		departamentos = em.createQuery("from Departamento",Departamento.class).getResultList();
-		return departamentos;
-	}
-
-	public void setDepartamentos(List<Departamento> departamentos) {
-		this.departamentos = departamentos;
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 
 	public List<Cargo> getCargos() {
@@ -107,5 +93,5 @@ public class EmpleadoMB {
 	public void setCargos(List<Cargo> cargos) {
 		this.cargos = cargos;
 	}
-
+	
 }
