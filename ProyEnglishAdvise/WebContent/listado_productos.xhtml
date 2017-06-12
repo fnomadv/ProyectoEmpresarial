@@ -23,9 +23,7 @@
 		   	</h:column>
 		   	<h:column>
 		   		<f:facet name="header">Imagen</f:facet>
-				<h:graphicImage value="/images/GETSMART/GETSMART1.jpg">
-		   		</h:graphicImage> 
-
+				<h:graphicImage value="#{m.imagen}"></h:graphicImage>
 		   	</h:column>
 		   	<h:column>
 		   		<f:facet name="header">Descripcion</f:facet>
@@ -37,12 +35,9 @@
 		   	</h:column>
 		   	<h:column>
 		   		<f:facet name="header">Columna1</f:facet>
-	   			
 		   	</h:column>
 	   </h:dataTable>
-
-	    		
-	    		<h:commandButton value="Guardar" action="#{empleadoMB.guardar}"></h:commandButton>
+	    		<h:commandButton value="Guardar" action="#{productoMB.guardar}"></h:commandButton>
 
 	   
 	    </h:form>
