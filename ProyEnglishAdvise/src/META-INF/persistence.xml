@@ -9,6 +9,8 @@
 	<class>pe.edu.cibertec.domain.Cargo</class>
 	<class>pe.edu.cibertec.domain.Producto</class>
 	<class>pe.edu.cibertec.domain.Cliente</class>
+	<class>pe.edu.cibertec.domain.LineaPedido</class>
+	<class>pe.edu.cibertec.domain.Pedido</class>
 <!-- 	<class>domain.Laptop</class> -->
 
 		<properties>
