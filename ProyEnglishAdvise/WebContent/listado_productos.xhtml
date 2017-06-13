@@ -34,8 +34,10 @@
 	   			#{m.precio}
 		   	</h:column>
 		   	<h:column>
-		   		<f:facet name="header">Agregar al carrito</f:facet>
-		   	</h:column>
+                <f:facet name="header"><h:outputText value=""/></f:facet>
+                <h:commandLink action="#{carritoCompraMB.agregarAlCarrito(m.id)}" 
+                value="Agregar al carrito"/>
+            </h:column>
 	   </h:dataTable>
 	    		
 

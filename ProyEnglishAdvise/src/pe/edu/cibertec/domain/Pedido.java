@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +15,9 @@ public class Pedido {
 	@GeneratedValue
 	private Integer id;
 	private Date fecha;
-	private Cliente cliente;
+	
+	@ManyToOne
+	private Cliente cliente = new Cliente();
 
 	public Integer getId() {
 		return id;

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,11 +15,11 @@ public class LineaPedido {
 	@GeneratedValue
 	private Integer id;
 	@ManyToOne
-	private Pedido pedido;
+	private Pedido pedido = new Pedido();
 	@ManyToOne
-	private Producto producto;
+	private Producto producto = new Producto();
 	private Integer cantidad;
-	private double valorTotal;
+	private double monto;
 
 	public Integer getId() {
 		return id;
@@ -53,11 +54,11 @@ public class LineaPedido {
 	}
 
 	public double getValorTotal() {
-		return valorTotal;
+		return monto;
 	}
 
 	public void setValorTotal(double valorTotal) {
-		this.valorTotal = valorTotal;
+		this.monto = valorTotal;
 	}
 
 }
