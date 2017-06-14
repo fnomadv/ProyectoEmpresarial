@@ -13,6 +13,10 @@
 	    <h:form id="myForm">
 	    
 	    	<h:dataTable value="#{productoMB.productos}" var="m" border="1">
+	    	<h:column>
+		   		<f:facet name="header">id</f:facet>
+		   		#{m.id}
+		   	</h:column>
 		   	<h:column>
 		   		<f:facet name="header">isbn</f:facet>
 		   		#{m.isbn}
@@ -33,15 +37,18 @@
 		   		<f:facet name="header">Precio</f:facet>
 	   			#{m.precio}
 		   	</h:column>
+<!-- 		   	<h:column> -->
+<!-- 		   		<f:facet name="header">Cantidad</f:facet> -->
+<!-- 	   			<h:inputText id="cantidad"  -->
+<!-- 	    			value="#{carritoCompraMB.lineapedido.cantidad}"></h:inputText> -->
+<!-- 		   	</h:column> -->
 		   	<h:column>
                 <f:facet name="header"><h:outputText value=""/></f:facet>
                 <h:commandLink action="#{carritoCompraMB.agregarAlCarrito(m.id)}" 
                 value="Agregar al carrito"/>
+                
             </h:column>
 	   </h:dataTable>
-	    		
-
-	   
 	    </h:form>
 	    
 	   <h:link outcome="welcome">Volver</h:link><br></br>

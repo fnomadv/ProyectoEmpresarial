@@ -28,40 +28,32 @@ public class CarritoCompraMB {
 
 	
 	public String agregarAlCarrito(long idProducto) {
-        setIdProductoSeleccionado(idProducto);
-        Producto p = buscarProductoCarrito(idProductoSeleccionado);
-        if (p != null /*&& p.getStock() > 0*/) {
-            /*int n = listaProdCarrito.indexOf(p);*/
-            listaProdCarrito.add(p); /*.get(n).setCantidad(carrito.get(n).getCantidad() + 1);*/
-            totalCompra+=p.getPrecio();
-        } else {
-        	productoSeleccionado = buscarProductoCarrito(idProductoSeleccionado);
-                //productoSelecionado.setCantidad(1);
-                if(productoSeleccionado.getStock()>0){
-                    listaProdCarrito.add(productoSeleccionado);
-                    totalCompra+=productoSeleccionado.getPrecio();
-                }
-        }    
+		EntityManager em = JPAUtil.getEntityManager();
+		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod",Producto.class)
+				.setParameter("idprod",idProducto) .getSingleResult();
+		
+        listaProdCarrito.add(productoSeleccionado);
+
         return "carrito_actual";
     }
 	
-	private Producto buscarProductoCarrito(long idProducto) {
-        Producto p = null;
-        for (Producto prod : listaProdCarrito) {
-            if (prod.getId() == idProducto) {
-                p = prod;
-                break;
-            }
-        }
-        return p;
-    }
-	
-	public Producto buscarProductoParaElCarrito(long idProductoSeleccionado) {
-		EntityManager em = JPAUtil.getEntityManager();
-		productoSeleccionado = em.createQuery("select e from Producto p where p.id = :idprod",Producto.class)
-				.setParameter("idprod",productoSeleccionado.getId()) .getSingleResult();
-		return productoSeleccionado;
-	}
+//	private Producto buscarProductoCarrito(long idProducto) {
+//        Producto p = null;
+//        for (Producto prod : listaProdCarrito) {
+//            if (prod.getId() == idProducto) {
+//                p = prod;
+//                break;
+//            }
+//        }
+//        return p;
+//    }
+//	
+//	public Producto buscarProductoParaElCarrito(long idProductoSeleccionado) {
+//		EntityManager em = JPAUtil.getEntityManager();
+//		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod",Producto.class)
+//				.setParameter("idprod",productoSeleccionado.getId()) .getSingleResult();
+//		return productoSeleccionado;
+//	}
 	
 	public Producto getProductoSeleccionado() {
 		return productoSeleccionado;
