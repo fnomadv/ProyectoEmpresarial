@@ -12,61 +12,43 @@
 			<h1>Carrito hasta el momento</h1>
 			<f:view>
 				<h:form>
-					<h:dataTable value="#{carritoCompraMB.listaProdCarrito}"
+					<h:dataTable value="#{carritoCompraMB.listaLineaPedido}"
 						var="productos" rules="all" border="1" cellpadding="5"
 						cellspacing="0">
 						<h:column>
 							<f:facet name="header">Producto</f:facet>
-							<h:outputText value="#{productos.titulo}" />
+							<h:outputText value="#{productos.producto.titulo}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Descripcion" />
 							</f:facet>
-							<h:outputText value="#{productos.descripcion}" />
+							<h:outputText value="#{productos.producto.descripcion}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Imagen" />
 							</f:facet>
-							<h:graphicImage value="#{productos.imagen}"></h:graphicImage>
+							<h:graphicImage value="#{productos.producto.imagen}"></h:graphicImage>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Precio" />
+								<h:outputText value="Cantidad" />
 							</f:facet>
-							<h:outputText value="#{productos.precio}" />
+							<h:outputText value="#{productos.cantidad}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Monto" />
 							</f:facet>
-							<h:outputText value="#{productos.precio * productos.stock}" />
+							<h:outputText value="#{productos.monto}" />
 						</h:column>
 
-						<!--                       <h:column> -->
-						<!--                           <f:facet name="header"> -->
-						<!--                               <h:outputText value=""/> -->
-						<!--                           </f:facet> -->
-						<!--                           <h:commandLink value="Borrar del carrito" action="#{carritoController.borrarDelCarrito(productos.idproducto)}"/> -->
-						<!--                       </h:column> -->
 					</h:dataTable>
-
-					<!--                   <br/> -->
-					<!--                   <br/> -->
-					<!--                   <h:outputLabel value="Total: $"/> -->
-					<!--                   <h:outputText value="#{carritoController.totalCompra}"/> -->
-					<!--                   <br/> -->
-					<!--                   <br/> -->
-					<!--                   <h:commandLink value="Confirmar compra" action="#{carritoController.confirmarPedido()}"/> -->
-
-					<!--                   <h:commandLink value="Seguir comprando" action="#{carritoController.doIrCarrito()}"/> -->
-
-					<!--                   <h:message id="mensajeError" for="mensajeError"/> -->
 
 				</h:form>
 			</f:view>
-			<h:link outcome="listado_productos">Seguir Comprando</h:link>
+			<h:link outcome="listado_productos">Seguir Comprando</h:link><br></br>
 			<h:link outcome="welcome">Inicio</h:link>
 			<br></br>
 		</ui:define>

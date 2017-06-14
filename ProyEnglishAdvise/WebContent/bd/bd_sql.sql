@@ -1,10 +1,15 @@
 create database proyectoPE;
 use proyectoPE;
 
+use ciberfarma;
+select * from tb_tipodoc;
+
 desc tb_empleado;
 desc tb_departamento;
 desc tb_cliente;
 desc tb_producto;
+desc tb_lineapedido;
+desc tb_pedido;
 
 /* INSERT INTO TB_DEPARTAMENTO*/
 insert into tb_departamento (nombre) values 
@@ -18,15 +23,22 @@ insert into tb_empleado (nombres,apellidos,dni,celular,departamento_id,cargo_id)
 ('Tesheng','Hsieh','000067574','987654321',2,2);
 
 /* INSERT INTO TB_PRODUCTO*/
-insert into tb_producto (isbn,titulo,imagen,descripcion,precio) values 
-('9682535896125','GET SMART 1','/images/GETSMART/GETSMART1.jpg','DESCRIPCION DEL LIBRO',85.00);
+insert into tb_producto (isbn,titulo,imagen,descripcion,precio,stock) values 
+('9682535896125','GET SMART 1','/images/getsmart/gs1.jpg','DESCRIPCION DEL LIBRO',85.00,500),
+('9682535896222','GET SMART 2','/images/getsmart/gs2.jpg','DESCRIPCION DEL LIBRO',85.00,500),
+('9682535896333','GET SMART 3','/images/getsmart/gs3.jpg','DESCRIPCION DEL LIBRO',85.00,500),
+('9682535896444','GET SMART 4','/images/getsmart/gs4.jpg','DESCRIPCION DEL LIBRO',85.00,450),
+('9682535896555','GET SMART 5','/images/getsmart/gs5.jpg','DESCRIPCION DEL LIBRO',85.00,600),
+('9682535896666','GET SMART 6','/images/getsmart/gs6.jpg','DESCRIPCION DEL LIBRO',85.00,700);
 
 
 select * from tb_cliente;
 select * from tb_cargo;
 select * from tb_empleado;
 select * from tb_departamento;
-
+select * from tb_producto;
+select * from tb_lineapedido;
+select * from tb_pedido;
 
 /*CREACION DE TABLAS MAESTRAS*/
 

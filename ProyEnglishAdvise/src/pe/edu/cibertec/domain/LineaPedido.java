@@ -21,6 +21,25 @@ public class LineaPedido {
 	private Integer cantidad;
 	private double monto;
 
+	public LineaPedido(){}
+	
+	public LineaPedido(Pedido pedido) {
+		super();
+		this.pedido = pedido;
+	}
+
+	public LineaPedido(Producto producto) {
+		this.producto = producto;
+	}
+
+	public double getMonto() {
+		return monto;
+	}
+
+	public void setMonto(double monto) {
+		this.monto = monto;
+	}
+
 	public Integer getId() {
 		return id;
 	}

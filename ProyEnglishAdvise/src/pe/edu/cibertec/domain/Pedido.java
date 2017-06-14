@@ -18,6 +18,14 @@ public class Pedido {
 	
 	@ManyToOne
 	private Cliente cliente = new Cliente();
+	
+	public Pedido(){}
+	
+	public Pedido(Date fecha, Cliente cliente){
+		super();
+		this.fecha = fecha;
+		this.cliente = cliente;
+	}
 
 	public Integer getId() {
 		return id;
