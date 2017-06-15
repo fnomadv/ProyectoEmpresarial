@@ -48,7 +48,7 @@ public class CarritoCompraMB {
 	 * @param idProducto
 	 * @return
 	 */
-	public String productoSeleccionado(long idProducto) {
+	public String seleccionarProducto(long idProducto) {
 		EntityManager em = JPAUtil.getEntityManager();
 		listaProdCarrito.removeAll(getListaProdCarrito());
 		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod",Producto.class)
