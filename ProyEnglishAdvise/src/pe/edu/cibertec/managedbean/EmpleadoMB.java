@@ -35,7 +35,10 @@ public class EmpleadoMB {
 		EntityManager em = JPAUtil.getEntityManager();
 		
 		EntityTransaction tx = em.getTransaction();
-		
+		System.out.println("**********Empleado**********");
+		System.out.println("ID: "+empleado.getId());
+		System.out.println("nombres: "+empleado.getNombres());
+		System.out.println("apellidos: "+empleado.getApellidos());
 		tx.begin();
 			em.merge(empleado);
 		tx.commit();

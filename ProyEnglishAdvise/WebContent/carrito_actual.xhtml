@@ -45,7 +45,10 @@
 						</h:column>
 
 					</h:dataTable>
-
+					<h:outputLabel>Total de Compra:  </h:outputLabel>
+					<h:outputText value="#{carritoCompraMB.totalCompra}">
+						<f:convertNumber type="currency" locale="es_PE" />
+					</h:outputText>
 				</h:form>
 			</f:view>
 			<h:link outcome="listado_productos">Seguir Comprando</h:link><br></br>

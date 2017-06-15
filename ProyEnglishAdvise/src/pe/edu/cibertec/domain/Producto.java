@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * En esta clase se registrara los atributos de un libro. Producto que la
@@ -26,6 +27,8 @@ public class Producto {
 	private String descripcion;
 	private double precio;
 	private int stock;
+	@Transient
+	private int cantidad;
 
 	public Producto(){}
 	
@@ -40,7 +43,7 @@ public class Producto {
 		this.precio = precio;
 		this.stock = stock;
 	}
-
+ 
 	public Long getId() {
 		return id;
 	}
@@ -95,6 +98,14 @@ public class Producto {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 }

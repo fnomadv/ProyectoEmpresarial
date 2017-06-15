@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -14,6 +16,8 @@ public class Pedido {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	
 	@ManyToOne

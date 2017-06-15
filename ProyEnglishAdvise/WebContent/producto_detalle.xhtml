@@ -38,14 +38,17 @@
 		   	</h:column>
 		   	<h:column>
 		   		<f:facet name="header">Cantidad</f:facet>
-	   			<h:inputText id="cantidad" for="cantidad"
+	   			<h:inputText id="cantidad" value="#{carritoCompraMB.cantidad}"
 	    			required="true"
-	    			requiredMessage="El campo nombres es obligatorio"></h:inputText>
+	    			requiredMessage="El campo nombres es obligatorio">
+	    			
+	    			</h:inputText>
 		   	</h:column>
 		   	<h:column>
                 <f:facet name="header"><h:outputText value=""/></f:facet>
                 <h:commandLink action="#{carritoCompraMB.agregarAlCarrito(m.id)}"
-                value="Agregar al Carrito"/>
+                value="Agregar al Carrito">
+                </h:commandLink>
             </h:column>
 	   </h:dataTable>
 	    </h:form>
