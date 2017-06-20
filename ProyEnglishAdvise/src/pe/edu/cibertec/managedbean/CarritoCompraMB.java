@@ -45,6 +45,7 @@ public class CarritoCompraMB {
 
 	/**
 	 * Metodo que recibe el id del producto para capturar sus datos y retorna un lista del
+	 * producto mas detallada redirecciona a pagina producto_detalle.
 	 * @param idProducto
 	 * @return
 	 */
@@ -60,10 +61,8 @@ public class CarritoCompraMB {
     }
 	
 	public String agregarAlCarrito(long idProducto){
-		EntityManager em = JPAUtil.getEntityManager();
-		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod",Producto.class)
-				.setParameter("idprod",idProducto).getSingleResult();
 
+		productoSeleccionado = getProductoSeleccionado(idProducto);
 		
 		System.out.println("**********Producto Seleccionado**********");
 		System.out.println("Prod S. ID: "+productoSeleccionado.getId());
@@ -80,6 +79,7 @@ public class CarritoCompraMB {
 				lineaPedido.setCantidad(cantidad);
 				lineaPedido.setMonto(productoSeleccionado.getPrecio()*lineaPedido.getCantidad());
 				totalCompra+=lineaPedido.getMonto();
+				
 				listaLineaPedido.add(lineaPedido);
 //			}
 //
@@ -99,14 +99,22 @@ public class CarritoCompraMB {
 		return "carrito_actual";
 	}
 	
-	void guardarCarritoTemporal(){
+//	private void actualizarProductoSeleccionado(Long id,int cantidad) {
+//		EntityManager em = JPAUtil.getEntityManager();
+//		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod",Producto.class)
+//				.setParameter("idprod",id).getSingleResult();
+//	}
+
+	private void guardarCarritoTemporal(){
 		EntityManager em = JPAUtil.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		//Date fecha = Calendar.getInstance().getTime();
-		//pedido = new Pedido(fecha, cliente);
+		Date fecha = Calendar.getInstance().getTime();
+		pedido = new Pedido(fecha, cliente);
+		//actualizarProductoSeleccionado(lineaPedido.getProducto().getId(),lineaPedido.getCantidad());
 		tx.begin();
-			em.merge(pedido);
-			em.merge(lineaPedido);
+			em.persist(pedido);
+			//em.merge(lineaPedido);
+			//em.contains(arg0)
 			System.out.println("**********Pedido**********");
 			System.out.println("ID Pedido: "+pedido.getId());
 			System.out.println("ID Pedido: "+pedido.getId());
@@ -124,15 +132,11 @@ public class CarritoCompraMB {
 //        }
 //        return p;
 //    }
-//	
-//	public Producto buscarProductoParaElCarrito(long idProductoSeleccionado) {
-//		EntityManager em = JPAUtil.getEntityManager();
-//		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod",Producto.class)
-//				.setParameter("idprod",productoSeleccionado.getId()) .getSingleResult();
-//		return productoSeleccionado;
-//	}
 	
-	public Producto getProductoSeleccionado() {
+	public Producto getProductoSeleccionado(long idproducto) {
+		EntityManager em = JPAUtil.getEntityManager();
+		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod",Producto.class)
+				.setParameter("idprod",idproducto).getSingleResult();
 		return productoSeleccionado;
 	}
 
