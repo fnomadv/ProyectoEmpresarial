@@ -12,6 +12,7 @@ import javax.persistence.EntityTransaction;
 
 import pe.edu.cibertec.domain.Cargo;
 import pe.edu.cibertec.domain.Cliente;
+import pe.edu.cibertec.domain.Producto;
 import pe.edu.cibertec.util.JPAUtil;
 
 @ManagedBean
@@ -23,10 +24,6 @@ public class ClienteMB {
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
 	private List<Cargo> cargos = new ArrayList<>();
-	
-//	public ClienteMB(){
-//		EntityManager em = JPAUtil.getEntityManager();
-//	}
 	
 	public void guardarCliente(){
 		EntityManager em = JPAUtil.getEntityManager();
@@ -53,6 +50,12 @@ public class ClienteMB {
 		
 		
 		return "registrar_cliente";
+	}
+	
+	public String login(){
+		System.out.println("Ejecucion metodo Login");
+		return "welcome";
+		
 	}
 	
 	/*
@@ -93,5 +96,6 @@ public class ClienteMB {
 	public void setCargos(List<Cargo> cargos) {
 		this.cargos = cargos;
 	}
+
 	
 }

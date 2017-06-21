@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="tb_cliente")
+@Table(name = "tb_cliente")
 public class Cliente {
 
 	@Id
@@ -26,6 +26,8 @@ public class Cliente {
 	private String apellidos;
 	private String dni;
 	private String telefono;
+	private String usuario;
+	private String clave;
 
 	@ManyToOne
 	private Cargo cargo = new Cargo();
@@ -76,6 +78,22 @@ public class Cliente {
 
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 }

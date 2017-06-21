@@ -9,82 +9,91 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 
 	<ui:define name="content">
-	    
-	    <h:form id="myForm">
-	    
-	    	<h:messages globalOnly="true" 
-	    		showSummary="true" showDetail="false"></h:messages>
-	    	
-	    	<h:panelGrid columns="3" >
-	    		
-	    		<h:outputText value="Nombres"></h:outputText>
-	    		<h:inputText id="nombres" 
-	    			value="#{clienteMB.cliente.nombres}"
-	    			required="true"
-	    			requiredMessage="El campo nombres es obligatorio"></h:inputText>
-	    		<h:message for="nombres" style="color:red"></h:message>
-	    		
-	    		<h:outputText value="Apellidos"></h:outputText>
-	    		<h:inputText id="apellidos" 
-	    			value="#{clienteMB.cliente.apellidos}"
-	    			required="true"
-	    			requiredMessage="El campo apellido es obligatorio"></h:inputText>
-	    		<h:message for="apellido"></h:message>
-	    		
-	    		<h:outputText value="DNI"></h:outputText>
-	    		<h:inputText id="dni" 
-	    			value="#{clienteMB.cliente.dni}"
-	    			required="true"
-	    			requiredMessage="El campo dni es obligatorio"></h:inputText>
-	    		<h:message for="dni"></h:message>
-	    		
-	    		<h:outputText value="Telefono"></h:outputText>
-	    		<h:inputText id="telefono" 
-	    			value="#{clienteMB.cliente.telefono}"
-	    			required="true"
-	    			requiredMessage="El campo telefono es obligatorio"></h:inputText>
-	    		<h:message for="telefono"></h:message>
-	    		
-	    		<h:outputText value="Cargo"></h:outputText>
-	    		<h:selectOneMenu id="cargo" 
-	    				value="#{clienteMB.cliente.cargo.id}">
-	    			<f:selectItems value="#{clienteMB.cargos}" 
-	    							var="d" itemLabel="#{d.nombre}"
-	    									itemValue="#{d.id}">
-	    			</f:selectItems>
-	    		</h:selectOneMenu>
-	    		<h:message for="cargo"></h:message>
-	    	
-	    	</h:panelGrid> 
-	    		
-	    		<h:commandButton value="Guardar" action="#{clienteMB.guardar}"></h:commandButton>
 
-	   
-	    </h:form>
-	    <h:dataTable value="#{clienteMB.clientes}" var="m" border="1">
-		   	<h:column>
-		   		<f:facet name="header">Nombres</f:facet>
+		<h:form id="myForm">
+
+			<h:messages globalOnly="true" showSummary="true" showDetail="false"></h:messages>
+
+			<h:panelGrid columns="3">
+
+				<h:outputText value="Nombres"></h:outputText>
+				<h:inputText id="nombres" value="#{clienteMB.cliente.nombres}"
+					required="true" requiredMessage="El campo nombres es obligatorio"
+					onblur="agregarApellido();"></h:inputText>
+				<h:message for="nombres" style="color:red"></h:message>
+			
+				<h:outputText value="Apellidos"></h:outputText>
+				<h:inputText id="apellidos" value="#{clienteMB.cliente.apellidos}"
+					required="true" requiredMessage="El campo apellido es obligatorio"></h:inputText>
+				<h:message for="apellidos"></h:message>
+
+				<h:outputText value="DNI"></h:outputText>
+				<h:inputText id="dni" value="#{clienteMB.cliente.dni}"
+					required="true" requiredMessage="El campo dni es obligatorio"></h:inputText>
+				<h:message for="dni"></h:message>
+
+				<h:outputText value="Telefono"></h:outputText>
+				<h:inputText id="telefono" value="#{clienteMB.cliente.telefono}"
+					required="true" requiredMessage="El campo telefono es obligatorio"></h:inputText>
+				<h:message for="telefono"></h:message>
+
+				<h:outputText value="Cargo"></h:outputText>
+				<h:selectOneMenu id="cargo" value="#{clienteMB.cliente.cargo.id}">
+					<f:selectItems value="#{clienteMB.cargos}" var="d"
+						itemLabel="#{d.nombre}" itemValue="#{d.id}">
+					</f:selectItems>
+				</h:selectOneMenu>
+				<h:message for="cargo"></h:message>
+
+				<h:outputText value="Usuario"></h:outputText>
+				<h:inputText id="usuario" value="#{clienteMB.cliente.usuario}"
+					required="true" requiredMessage="El usuario es obligatorio"></h:inputText>
+				<h:message for="usuario"></h:message>
+
+				<h:outputText value="Clave"></h:outputText>
+				<h:inputSecret id="clave" value="#{clienteMB.cliente.clave}"
+					required="true" requiredMessage="El usuario es obligatorio">
+
+				</h:inputSecret>
+				<h:message for="clave"></h:message>
+
+
+			</h:panelGrid>
+
+			<h:commandButton value="Guardar" action="#{clienteMB.guardar}"></h:commandButton>
+
+
+		</h:form>
+		<h:dataTable value="#{clienteMB.clientes}" var="m" border="1">
+			<h:column>
+				<f:facet name="header">Nombres</f:facet>
 		   		#{m.nombres}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">Apellidos</f:facet>
+			<h:column>
+				<f:facet name="header">Apellidos</f:facet>
 		   		#{m.apellidos}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">DNI</f:facet>
+			<h:column>
+				<f:facet name="header">Usuario</f:facet>
+	 	   		#{m.usuario}
+		   	</h:column>
+			<h:column>
+				<f:facet name="header">DNI</f:facet>
 	 	   		#{m.dni}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">Telefono</f:facet>
+			<h:column>
+				<f:facet name="header">Telefono</f:facet>
 	   			#{m.telefono}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">Cargo</f:facet>
+			<h:column>
+				<f:facet name="header">Cargo</f:facet>
 	   			#{m.cargo.nombre}
 		   	</h:column>
-	   </h:dataTable>
-	   <h:link outcome="welcome">Volver</h:link><br></br>
+		</h:dataTable>
+		<h:link outcome="welcome">Volver</h:link>
+		<br></br>
 	</ui:define>
-	
 </ui:composition>
 </html>
+
+
