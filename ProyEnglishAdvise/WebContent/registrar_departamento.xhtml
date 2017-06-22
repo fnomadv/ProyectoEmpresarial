@@ -9,62 +9,68 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 
 	<ui:define name="content">
-	<div id="wrapeper">
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Mantenimiento Departamento</h1>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							Basic Form Elements
-						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-6">
-
-									<h:form id="myForm" role="form">
-										<div class="form-group">
-											<label>Nuevo Departamento</label>
-											<h:inputText id="nombre" class="form-control"
-												value="#{departamentoMB.departamento.nombre}"
-												required="true"
-												requiredMessage="El nombre del Departamento es obligatorio"></h:inputText>
-											<h:messages globalOnly="true" showSummary="true"
-												showDetail="false"></h:messages>
-											<h:message for="nombre" style="color:red"></h:message>
-											<p class="help-block">Example block-level help text here.</p>
-										</div>
-
-										<h:commandButton value="Guardar"
-											action="#{departamentoMB.guardar}"></h:commandButton>
-									</h:form>
-
-									<h:dataTable value="#{departamentoMB.departamentos}" var="m"
-										border="1">
-										<h:column>
-											<f:facet name="header">Codigo</f:facet>
-									   		#{m.id}
-									   	</h:column>
-										<h:column>
-											<f:facet name="header">Departamento</f:facet>
-									   		#{m.nombre}
-									   	</h:column>
-									</h:dataTable>
-									<h:link outcome="welcome">Volver</h:link>
-									<br></br>
-								</div>
+		<h1 class="page-header">Mantenimiento Departamento</h1>
+		<div class="panel panel-default">
+			<div class="panel-heading">Nuevo Departamento</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-6">
+						<!--  -->
+						<h:form id="myForm" role="form">
+							<div class="form-group">
+								<label>Nombre</label>
+								<h:inputText id="nombre" class="form-control"
+									value="#{departamentoMB.departamento.nombre}" required="true"
+									requiredMessage="El nombre del Departamento es obligatorio"></h:inputText>
+								<h:messages globalOnly="true" showSummary="true"
+									showDetail="false"></h:messages>
+								<h:message for="nombre" style="color:red"></h:message>
+								
 							</div>
-						</div>
+
+							<h:commandButton value="Guardar"
+								action="#{departamentoMB.guardar}" class="btn btn-success"></h:commandButton>
+							
+						</h:form>
 					</div>
 				</div>
-			</div>
+				</div>
 		</div>
+			<div class="row">
+                <div class="col-lg-6 col-md-offset-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Lista de Departamentos
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+						<h:dataTable value="#{departamentoMB.departamentos}" var="m"
+							class="table table-hover">
+							<h:column>
+								<f:facet name="header">Codigo</f:facet>
+									   		#{m.id}
+									   	</h:column>
+							<h:column>
+								<f:facet name="header">Departamento</f:facet>
+									   		#{m.nombre}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Editar</f:facet>
+									   		Editar
+							</h:column>
+						</h:dataTable>
+						
+						<h:link outcome="welcome">Volver</h:link>
+						<br></br>
+				</div>
 </div>
+</div>
+</div>
+</div>
+
+						<!--  -->
+					
+			
 
 
 	</ui:define>
