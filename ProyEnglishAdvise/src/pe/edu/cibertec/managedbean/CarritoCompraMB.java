@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transaction;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import pe.edu.cibertec.domain.Cliente;
@@ -36,7 +37,7 @@ public class CarritoCompraMB {
 	private Pedido pedido = new Pedido();
 	private Cliente cliente = new Cliente();
 	private List<Producto> listaProdCarrito = new ArrayList<Producto>();
-	private List<LineaPedido> listaLineaPedido = new ArrayList<LineaPedido>();
+	private List<LineaPedido> listaLineaPedido;
 
 	private long idProductoSeleccionado;
 	private double totalCompra = 0.0;
@@ -51,35 +52,81 @@ public class CarritoCompraMB {
 	 * @return
 	 */
 	public String seleccionarProducto(long idProducto) {
-		EntityManager em = JPAUtil.getEntityManager();
+		cantidad = 0;
 		listaProdCarrito.removeAll(getListaProdCarrito());
-		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod", Producto.class)
-				.setParameter("idprod", idProducto).getSingleResult();
-
+		productoSeleccionado = getProductoSeleccionado(idProducto);
 		listaProdCarrito.add(productoSeleccionado);
 
 		return "producto_detalle";
 	}
 
 	public String agregarAlCarrito(long idProducto) {
-
 		productoSeleccionado = getProductoSeleccionado(idProducto);
 
-		System.out.println("**********Producto Seleccionado**********");
-		System.out.println("Prod S. ID: " + productoSeleccionado.getId());
-		System.out.println("Prod S. cantidad: " + productoSeleccionado.getCantidad());
-		System.out.println("Prod S. precio: " + productoSeleccionado.getPrecio());
+		if (cantidad != 0) {
+			if (listaLineaPedido == null) {
+				// creamos un lista de pedido
+				listaLineaPedido = new ArrayList<LineaPedido>();
 
-		lineaPedido = new LineaPedido(productoSeleccionado);
-		lineaPedido.setCantidad(cantidad);
-		lineaPedido.setMonto(productoSeleccionado.getPrecio() * lineaPedido.getCantidad());
-		totalCompra += lineaPedido.getMonto();
+				// guardamos los datos del producto en una linea del carrito
+				lineaPedido = new LineaPedido(productoSeleccionado);
+				lineaPedido.setCantidad(cantidad);
+				monto = productoSeleccionado.getPrecio() * lineaPedido.getCantidad();
+				lineaPedido.setMonto(monto);
+				totalCompra += lineaPedido.getMonto();
 
-		listaLineaPedido.add(lineaPedido);
+				// agregamos la linea del pedido a una lista del pedido
+				// (carrito)
+				listaLineaPedido.add(lineaPedido);
+				return "carrito_actual";
+			} else {
 
-		guardarCarritoTemporal();
+				// si ya existe un carrito buscamos el producto selecciona
+				// dentro de la lista
+				for (LineaPedido lp : listaLineaPedido) {
+					if (lp.getProducto().getId() == productoSeleccionado.getId()) {
+						System.out.println("modificando el producto que estaba en el carrito");
+						lineaPedido.setCantidad(cantidad + lp.getCantidad());
+						monto = productoSeleccionado.getPrecio() * lineaPedido.getCantidad();
+						lineaPedido.setMonto(monto);
+						totalCompra += lineaPedido.getMonto();
+						return "carrito_actual";
+					}
+				}
 
+				System.out.println("creando una nueva linea de pedido");
+				lineaPedido = new LineaPedido(productoSeleccionado);
+				lineaPedido.setCantidad(cantidad);
+				monto = productoSeleccionado.getPrecio() * lineaPedido.getCantidad();
+				lineaPedido.setMonto(monto);
+				totalCompra += lineaPedido.getMonto();
+
+				listaLineaPedido.add(lineaPedido);
+
+				// guardarCarritoTemporal();
+
+			}
+			return "carrito_actual";
+		} else {
+			System.out.println("Error cantidad no puede ser 0");
+			return null;
+		}
+
+	}
+	
+	public String eliminarProductoDelCarrito(long id){
+		LineaPedido lp = obtenerProductoDelCarrito(id);
+		listaLineaPedido.remove(lp);
 		return "carrito_actual";
+	}
+	
+	public String anularCarrito(){
+		limpiarCarrito();
+		return "listado_productos";
+	}
+	
+	private void limpiarCarrito(){
+		listaLineaPedido = null;
 	}
 
 	private void guardarCarritoTemporal() {
@@ -115,6 +162,13 @@ public class CarritoCompraMB {
 		productoSeleccionado = em.createQuery("select e from Producto e where e.id = :idprod", Producto.class)
 				.setParameter("idprod", idproducto).getSingleResult();
 		return productoSeleccionado;
+	}
+	
+	public LineaPedido obtenerProductoDelCarrito(long id){
+		EntityManager em = JPAUtil.getEntityManager();
+		lineaPedido = em.createQuery("select e from LineaPedido e where e.id = :id", LineaPedido.class)
+				.setParameter("id", id).getSingleResult();
+		return lineaPedido;
 	}
 
 	public LineaPedido getLineaPedido() {

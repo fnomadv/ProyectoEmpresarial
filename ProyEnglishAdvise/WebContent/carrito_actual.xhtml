@@ -43,16 +43,29 @@
 							</f:facet>
 							<h:outputText value="#{productos.monto}" />
 						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Actualizar" />
+							</f:facet>
+							Actualizar
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Eliminar" />
+							</f:facet>
+							
+						</h:column>
 
 					</h:dataTable>
 					<h:outputLabel>Total de Compra:  </h:outputLabel>
 					<h:outputText value="#{carritoCompraMB.totalCompra}">
 						<f:convertNumber type="currency" locale="es_PE" />
 					</h:outputText>
+
 				</h:form>
 			</f:view>
 			<h:link outcome="listado_productos">Seguir Comprando</h:link><br></br>
-			<h:link outcome="listado_productos">Anular Compra</h:link><br></br>
+			<h:commandLink outcome="#{carritoCompraMB.anularCarrito}">Anular Compra</h:commandLink><br></br>
 			<h:link outcome="finalizar_compra">Finalizar Compra</h:link><br></br>
 			<h:link outcome="welcome">Inicio</h:link>
 			<br></br>
