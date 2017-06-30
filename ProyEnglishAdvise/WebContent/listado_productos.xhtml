@@ -12,67 +12,53 @@
 	 3. 
  -->
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-
-	<ui:define name="content">
-	<h:form id="myForm">
-		<h:dataTable value="#{productoMB.productos}" var="m" border="1">
-		<div class="col-sm-4 col-lg-4 col-md-4">
-			<div class="thumbnail">
-				<img src="http://placehold.it/320x150" alt="" />
-				<div class="caption">
-					<h4 class="pull-right">$24.99</h4>
-					<h4>
-						<a href="#">First Product</a>
-					</h4>
-					<p>
-						See more snippets like this online store item at <a
-							target="_blank" href="http://www.bootsnipp.com">Bootsnipp -
-							http://bootsnipp.com</a>.
-					</p>
-				</div>
-				<div class="ratings">
-					<p class="pull-right">15 reviews</p>
-					<p>
-						<span class="glyphicon glyphicon-star"></span> <span
-							class="glyphicon glyphicon-star"></span> <span
-							class="glyphicon glyphicon-star"></span> <span
-							class="glyphicon glyphicon-star"></span> <span
-							class="glyphicon glyphicon-star"></span>
-					</p>
-				</div>
-			</div>
+	<ui:define name="listadoIzquierda">
+		<p class="lead">Shop Name</p>
+		<div class="list-group">
+			<h:link outcome="registrar_empleado" class="list-group-item">Registrar Empleado</h:link>
+			<h:link outcome="registrar_departamento" class="list-group-item">Registrar Departamento</h:link>
+			<h:link outcome="registrar_cliente" class="list-group-item">Registrar Cliente</h:link>
+			<h:link outcome="carrito_actual" class="list-group-item">Carrito actual</h:link>
+			<h:link outcome="listado_productos" class="list-group-item">Listado de Productos</h:link>
+			<h:link outcome="login" class="list-group-item">Iniciar Sesion</h:link>
 		</div>
-		
-			
-				<h:column>
-					<f:facet name="header">Titulo</f:facet>
-		   		#{m.titulo}
-		   	</h:column>
-				<h:column>
-					<f:facet name="header">Imagen</f:facet>
-					<h:graphicImage value="#{m.imagen}"></h:graphicImage>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Descripcion</f:facet>
-	   			#{m.descripcion}
-		   	</h:column>
-				<h:column>
-					<f:facet name="header">Precio</f:facet>
-	   			#{m.precio}
-		   	</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="" />
-					</f:facet>
-					<h:commandLink
-						action="#{carritoCompraMB.seleccionarProducto(m.id)}"
-						value="Comprar" />
-				</h:column>
-			</h:dataTable>
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="myForm">
+
+			<ui:repeat var="m" value="#{productoMB.productos}">
+				<div class="col-sm-4 col-lg-4 col-md-4">
+					<div class="thumbnail">
+
+						<h:graphicImage value="#{m.imagen}"></h:graphicImage>
+						<div class="caption">
+							<h4 class="pull-right">S/. #{m.precio}</h4>
+							<h4>
+								#{m.titulo}<a href="#"></a>
+							</h4>
+							<p>#{m.descripcion} See more snippets like this online store
+								item at</p>
+						</div>
+						<div class="ratings">
+							<!-- 					<p class="pull-right">15 reviews</p> -->
+							<p class="pull-right">
+								<h:commandLink
+									action="#{carritoCompraMB.seleccionarProducto(m.id)}"
+									value="Comprar" />
+							</p>
+							<p>
+								<span class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</ui:repeat>
 		</h:form>
 
-		<h:link outcome="welcome">Volver</h:link>
-		<br></br>
 	</ui:define>
 
 </ui:composition>

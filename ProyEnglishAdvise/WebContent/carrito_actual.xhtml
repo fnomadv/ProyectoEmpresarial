@@ -7,7 +7,17 @@
 
 <body>
 	<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-
+		<ui:define name="listadoIzquierda">
+			<p class="lead">Shop Name</p>
+			<div class="list-group">
+				<h:link outcome="registrar_empleado" class="list-group-item">Registrar Empleado</h:link>
+				<h:link outcome="registrar_departamento" class="list-group-item">Registrar Departamento</h:link>
+				<h:link outcome="registrar_cliente" class="list-group-item">Registrar Cliente</h:link>
+				<h:link outcome="carrito_actual" class="list-group-item">Carrito actual</h:link>
+				<h:link outcome="listado_productos" class="list-group-item">Listado de Productos</h:link>
+				<h:link outcome="login" class="list-group-item">Iniciar Sesion</h:link>
+			</div>
+		</ui:define>
 		<ui:define name="content">
 			<h1>Carrito hasta el momento</h1>
 			<f:view>
@@ -53,7 +63,7 @@
 							<f:facet name="header">
 								<h:outputText value="Eliminar" />
 							</f:facet>
-							
+
 						</h:column>
 
 					</h:dataTable>
@@ -64,9 +74,12 @@
 
 				</h:form>
 			</f:view>
-			<h:link outcome="listado_productos">Seguir Comprando</h:link><br></br>
-			<h:commandLink outcome="#{carritoCompraMB.anularCarrito}">Anular Compra</h:commandLink><br></br>
-			<h:link outcome="finalizar_compra">Finalizar Compra</h:link><br></br>
+			<h:link outcome="listado_productos">Seguir Comprando</h:link>
+			<br></br>
+			<h:commandLink outcome="#{carritoCompraMB.anularCarrito}">Anular Compra</h:commandLink>
+			<br></br>
+			<h:link outcome="finalizar_compra">Finalizar Compra</h:link>
+			<br></br>
 			<h:link outcome="welcome">Inicio</h:link>
 			<br></br>
 		</ui:define>

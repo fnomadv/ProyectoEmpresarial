@@ -7,7 +7,17 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-
+	<ui:define name="listadoIzquierda">
+		<p class="lead">Shop Name</p>
+		<div class="list-group">
+			<h:link outcome="registrar_empleado" class="list-group-item">Registrar Empleado</h:link>
+			<h:link outcome="registrar_departamento" class="list-group-item">Registrar Departamento</h:link>
+			<h:link outcome="registrar_cliente" class="list-group-item">Registrar Cliente</h:link>
+			<h:link outcome="carrito_actual" class="list-group-item">Carrito actual</h:link>
+			<h:link outcome="listado_productos" class="list-group-item">Listado de Productos</h:link>
+			<h:link outcome="login" class="list-group-item">Iniciar Sesion</h:link>
+		</div>
+	</ui:define>
 	<ui:define name="content">
 		<h1 class="page-header">Mantenimiento Departamento</h1>
 		<div class="panel panel-default">
@@ -25,52 +35,50 @@
 								<h:messages globalOnly="true" showSummary="true"
 									showDetail="false"></h:messages>
 								<h:message for="nombre" style="color:red"></h:message>
-								
+
 							</div>
 
 							<h:commandButton value="Guardar"
 								action="#{departamentoMB.guardar}" class="btn btn-success"></h:commandButton>
-							
+
 						</h:form>
 					</div>
 				</div>
-				</div>
+			</div>
 		</div>
-			<div class="row">
-                <div class="col-lg-6 col-md-offset-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Lista de Departamentos
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-						<h:dataTable value="#{departamentoMB.departamentos}" var="m"
-							class="table table-hover">
-							<h:column>
-								<f:facet name="header">Codigo</f:facet>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Lista de Departamentos</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<h:dataTable value="#{departamentoMB.departamentos}" var="m"
+								class="table table-hover">
+								<h:column>
+									<f:facet name="header">Codigo</f:facet>
 									   		#{m.id}
 									   	</h:column>
-							<h:column>
-								<f:facet name="header">Departamento</f:facet>
+								<h:column>
+									<f:facet name="header">Departamento</f:facet>
 									   		#{m.nombre}
 							</h:column>
-							<h:column>
-								<f:facet name="header">Editar</f:facet>
+								<h:column>
+									<f:facet name="header">Editar</f:facet>
 									   		Editar
 							</h:column>
-						</h:dataTable>
-						
-						<h:link outcome="welcome">Volver</h:link>
-						<br></br>
-				</div>
-</div>
-</div>
-</div>
-</div>
+							</h:dataTable>
 
-						<!--  -->
-					
-			
+							<h:link outcome="welcome">Volver</h:link>
+							<br></br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--  -->
+
+
 
 
 	</ui:define>
