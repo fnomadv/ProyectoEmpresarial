@@ -8,14 +8,59 @@
 <body>
 	<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 		<ui:define name="listadoIzquierda">
-			<p class="lead">Shop Name</p>
-			<div class="list-group">
-				<h:link outcome="registrar_empleado" class="list-group-item">Registrar Empleado</h:link>
-				<h:link outcome="registrar_departamento" class="list-group-item">Registrar Departamento</h:link>
-				<h:link outcome="registrar_cliente" class="list-group-item">Registrar Cliente</h:link>
-				<h:link outcome="carrito_actual" class="list-group-item">Carrito actual</h:link>
-				<h:link outcome="listado_productos" class="list-group-item">Listado de Productos</h:link>
-				<h:link outcome="login" class="list-group-item">Iniciar Sesion</h:link>
+			<div class="panel-group">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapse3">Clientes</a>
+						</h4>
+					</div>
+					<div id="collapse3" class="panel-collapse collapse">
+						<div class="panel-body">
+							<h:link outcome="registrar_empleado">Nuevo Cliente</h:link>
+						</div>
+						<div class="panel-body">Actualizar</div>
+					</div>
+
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapse2">Productos</a>
+						</h4>
+					</div>
+					<div id="collapse2" class="panel-collapse collapse">
+						<div class="panel-body">
+							<h:link outcome="registrar_empleado">Nuevo Producto</h:link>
+						</div>
+						<div class="panel-body">
+							<h:link outcome="listado_productos">Listado de Productos</h:link>
+						</div>
+						<div class="panel-body">Actualizar</div>
+					</div>
+
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapse1">Empleados</a>
+						</h4>
+					</div>
+					<div id="collapse1" class="panel-collapse collapse">
+						<div class="panel-body">
+							<h:link outcome="registrar_empleado">Nuevo Empleado</h:link>
+						</div>
+						<div class="panel-body">Actualizar Datos</div>
+					</div>
+
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapse4">Departamentos</a>
+						</h4>
+					</div>
+					<div id="collapse4" class="panel-collapse collapse">
+						<div class="panel-body">
+							<h:link outcome="registrar_departamento">Nuevo Departamento</h:link>
+						</div>
+						<div class="panel-body">Actualizar</div>
+					</div>
+				</div>
 			</div>
 		</ui:define>
 		<ui:define name="content">

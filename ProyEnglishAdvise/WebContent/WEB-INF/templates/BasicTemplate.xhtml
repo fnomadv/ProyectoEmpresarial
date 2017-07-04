@@ -20,12 +20,10 @@
 	type="text/css" />
 <link href="../resources/css/prueba.css" rel="stylesheet"
 	type="text/css" />
-	<!-- Scripts -->
-	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
+
 <!-- 	<script src="http://code.jquery.com/jquery.js"></script> -->
 <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -34,84 +32,49 @@
 <body>
 	<ui:debug hotkey="x"
 		endered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
-	<div id="wrapper">
-
-		<ui:insert name="header">
-			<ui:include src="header.xhtml" />
-		</ui:insert>
-		<nav class="navbar navbar-default sidebar" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-sidebar-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse"
-				id="bs-sidebar-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home<span
-							style="font-size: 16px;"
-							class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Usuarios <span class="caret"></span><span
-							style="font-size: 16px;"
-							class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
-						<ul class="dropdown-menu forAnimate" role="menu">
-							<li><a href="{{URL::to('createusuario')}}">Crear</a></li>
-							<li><a href="#">Modificar</a></li>
-							<li><a href="#">Reportar</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Informes</a></li>
-						</ul></li>
-					<li><a href="#">Libros<span style="font-size: 16px;"
-							class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>
-					<li><a href="#">Tags<span style="font-size: 16px;"
-							class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
-				</ul>
-			</div>
-		</div>
-		</nav>
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
+	<div id="container">
 		<div class="container">
-
 			<div class="row">
-
 				<div class="col-md-3">
 					<ui:insert name="listadoIzquierda">
 					</ui:insert>
-					
 				</div>
-
 				<div class="col-md-9">
-
-
-
 					<div class="row">
 						<ui:insert name="content">
 						</ui:insert>
 					</div>
-
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 
+	<div class="container">
 
+		<hr></hr>
 
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
 
-	<div id="footer">
-		<ui:insert name="footer">
-			<ui:include src="footer.xhtml" />
-		</ui:insert>
+				<p>Copyright &copy; Your Website 2014</p>
+				<!-- 					<ui:insert name="footer"> -->
+				<!-- 						<ui:include src="footer.xhtml" /> -->
+				<!-- 					</ui:insert> -->
+			</div>
+		</div>
+		</footer>
 	</div>
-	
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="../resources/js/jquery.js"></script>
+	<script type="text/javascript"
+		src="../resources/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

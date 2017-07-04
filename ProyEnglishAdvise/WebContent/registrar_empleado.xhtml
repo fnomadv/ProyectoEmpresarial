@@ -7,131 +7,165 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-		<ui:define name="listadoIzquierda">
-		<p class="lead">Shop Name</p>
-		<div class="list-group">
-			<h:link outcome="registrar_empleado" class="list-group-item">Registrar Empleado</h:link>
-			<h:link outcome="registrar_departamento" class="list-group-item">Registrar Departamento</h:link>
-			<h:link outcome="registrar_cliente" class="list-group-item">Registrar Cliente</h:link>
-			<h:link outcome="carrito_actual" class="list-group-item">Carrito actual</h:link>
-			<h:link outcome="listado_productos" class="list-group-item">Listado de Productos</h:link>
-			<h:link outcome="login" class="list-group-item">Iniciar Sesion</h:link>
+	<ui:define name="listadoIzquierda">
+		<div class="panel-group">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse3">Clientes</a>
+					</h4>
+				</div>
+				<div id="collapse3" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h:link outcome="registrar_empleado">Nuevo Cliente</h:link>
+					</div>
+					<div class="panel-body">Actualizar</div>
+				</div>
+
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse2">Productos</a>
+					</h4>
+				</div>
+				<div id="collapse2" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h:link outcome="registrar_empleado">Nuevo Producto</h:link>
+					</div>
+					<div class="panel-body">
+						<h:link outcome="listado_productos">Listado de Productos</h:link>
+					</div>
+					<div class="panel-body">Actualizar</div>
+				</div>
+
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse1">Empleados</a>
+					</h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h:link outcome="registrar_empleado">Nuevo Empleado</h:link>
+					</div>
+					<div class="panel-body">Actualizar Datos</div>
+				</div>
+
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse4">Departamentos</a>
+					</h4>
+				</div>
+				<div id="collapse4" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h:link outcome="registrar_departamento">Nuevo Departamento</h:link>
+					</div>
+					<div class="panel-body">Actualizar</div>
+				</div>
+			</div>
 		</div>
 	</ui:define>
 	<ui:define name="content">
-	    
-	    <h:form id="myForm">
-	    
-	    	<h:messages globalOnly="true" 
-	    		showSummary="true" showDetail="false"></h:messages>
-	    	
-	    	<h:panelGrid columns="3" >
-	    		
-	    		<h:outputText value="Nombres"></h:outputText>
-	    		<h:inputText id="nombres" 
-	    			value="#{empleadoMB.empleado.nombres}"
-	    			required="true"
-	    			requiredMessage="El campo nombres es obligatorio"></h:inputText>
-	    		<h:message for="nombres" style="color:red"></h:message>
-	    		
-	    		<h:outputText value="Apellidos"></h:outputText>
-	    		<h:inputText id="apellidos" 
-	    			value="#{empleadoMB.empleado.apellidos}"
-	    			required="true"
-	    			requiredMessage="El campo apellido es obligatorio"></h:inputText>
-	    		<h:message for="apellido"></h:message>
-	    		
-	    		<h:outputText value="DNI"></h:outputText>
-	    		<h:inputText id="dni" 
-	    			value="#{empleadoMB.empleado.dni}"
-	    			required="true"
-	    			requiredMessage="El campo dni es obligatorio"></h:inputText>
-	    		<h:message for="dni"></h:message>
-	    		
-	    		<h:outputText value="Celular"></h:outputText>
-	    		<h:inputText id="celular" 
-	    			value="#{empleadoMB.empleado.celular}"
-	    			required="true"
-	    			requiredMessage="El campo celular es obligatorio"></h:inputText>
-	    		<h:message for="celular"></h:message>
-	    		
-	    		<h:outputText value="Departamento"></h:outputText>
-	    		<h:selectOneMenu id="departamento" 
-	    				value="#{empleadoMB.empleado.departamento.id}">
-	    			<f:selectItems value="#{empleadoMB.departamentos}" 
-	    							var="d" itemLabel="#{d.nombre}"
-	    									itemValue="#{d.id}">
-	    				
-	    			</f:selectItems>
-	    		</h:selectOneMenu>
-	    		<h:message for="departamento"></h:message>
-	    		
-	    		<h:outputText value="Cargo"></h:outputText>
-	    		<h:selectOneMenu id="cargo" 
-	    				value="#{empleadoMB.empleado.cargo.id}">
-	    			<f:selectItems value="#{empleadoMB.cargos}" 
-	    							var="d" itemLabel="#{d.nombre}"
-	    									itemValue="#{d.id}">
-	    				
-	    			</f:selectItems>
-	    		</h:selectOneMenu>
-	    		<h:message for="cargo"></h:message>
-	    		
-<!-- 	    		<h:outputText value="Apellidos"></h:outputText> -->
-<!-- 	    		<h:selectOneMenu id="apellido"  -->
-<!-- 	    				value="#{laptopMB.laptop.marca.id}"> -->
-<!-- 	    			<f:selectItems value="#{laptopMB.marcas}"  -->
-<!-- 	    							var="d" itemLabel="#{d.nombre}" -->
-<!-- 	    									itemValue="#{d.id}"> -->
-	    				
-<!-- 	    			</f:selectItems> -->
-<!-- 	    		</h:selectOneMenu> -->
-<!-- 	    		<h:message for="marcaId"></h:message> -->
-	    	
-<!-- 	    		<h:outputText value="Tipo de Compra"></h:outputText> -->
-<!-- 	    		<h:selectOneMenu id="tipoCompra" value="#{laptopMB.laptop.tipoCompra}"> -->
-<!-- 	    			<f:selectItem itemValue="N" itemLabel="Normal"> -->
-<!-- 	    			</f:selectItem> -->
-<!-- 	    			<f:selectItem itemValue="I" itemLabel="Internet"> -->
-<!-- 	    			</f:selectItem> -->
-<!-- 	    		</h:selectOneMenu> -->
-<!-- 	    		<h:message for="tipoCompra"></h:message> -->
 
-	    	
-	    	</h:panelGrid> 
-	    		
-	    		<h:commandButton value="Guardar" action="#{empleadoMB.guardar}"></h:commandButton>
+		<h:form id="myForm">
 
-	   
-	    </h:form>
-	    <h:dataTable value="#{empleadoMB.empleados}" var="m" border="1">
-		   	<h:column>
-		   		<f:facet name="header">Nombres</f:facet>
+			<h:messages globalOnly="true" showSummary="true" showDetail="false"></h:messages>
+
+			<h:panelGrid columns="3">
+
+				<h:outputText value="Nombres"></h:outputText>
+				<h:inputText id="nombres" value="#{empleadoMB.empleado.nombres}"
+					required="true" requiredMessage="El campo nombres es obligatorio"></h:inputText>
+				<h:message for="nombres" style="color:red"></h:message>
+
+				<h:outputText value="Apellidos"></h:outputText>
+				<h:inputText id="apellidos" value="#{empleadoMB.empleado.apellidos}"
+					required="true" requiredMessage="El campo apellido es obligatorio"></h:inputText>
+				<h:message for="apellido"></h:message>
+
+				<h:outputText value="DNI"></h:outputText>
+				<h:inputText id="dni" value="#{empleadoMB.empleado.dni}"
+					required="true" requiredMessage="El campo dni es obligatorio"></h:inputText>
+				<h:message for="dni"></h:message>
+
+				<h:outputText value="Celular"></h:outputText>
+				<h:inputText id="celular" value="#{empleadoMB.empleado.celular}"
+					required="true" requiredMessage="El campo celular es obligatorio"></h:inputText>
+				<h:message for="celular"></h:message>
+
+				<h:outputText value="Departamento"></h:outputText>
+				<h:selectOneMenu id="departamento"
+					value="#{empleadoMB.empleado.departamento.id}">
+					<f:selectItems value="#{empleadoMB.departamentos}" var="d"
+						itemLabel="#{d.nombre}" itemValue="#{d.id}">
+
+					</f:selectItems>
+				</h:selectOneMenu>
+				<h:message for="departamento"></h:message>
+
+				<h:outputText value="Cargo"></h:outputText>
+				<h:selectOneMenu id="cargo" value="#{empleadoMB.empleado.cargo.id}">
+					<f:selectItems value="#{empleadoMB.cargos}" var="d"
+						itemLabel="#{d.nombre}" itemValue="#{d.id}">
+
+					</f:selectItems>
+				</h:selectOneMenu>
+				<h:message for="cargo"></h:message>
+
+				<!-- 	    		<h:outputText value="Apellidos"></h:outputText> -->
+				<!-- 	    		<h:selectOneMenu id="apellido"  -->
+				<!-- 	    				value="#{laptopMB.laptop.marca.id}"> -->
+				<!-- 	    			<f:selectItems value="#{laptopMB.marcas}"  -->
+				<!-- 	    							var="d" itemLabel="#{d.nombre}" -->
+				<!-- 	    									itemValue="#{d.id}"> -->
+
+				<!-- 	    			</f:selectItems> -->
+				<!-- 	    		</h:selectOneMenu> -->
+				<!-- 	    		<h:message for="marcaId"></h:message> -->
+
+				<!-- 	    		<h:outputText value="Tipo de Compra"></h:outputText> -->
+				<!-- 	    		<h:selectOneMenu id="tipoCompra" value="#{laptopMB.laptop.tipoCompra}"> -->
+				<!-- 	    			<f:selectItem itemValue="N" itemLabel="Normal"> -->
+				<!-- 	    			</f:selectItem> -->
+				<!-- 	    			<f:selectItem itemValue="I" itemLabel="Internet"> -->
+				<!-- 	    			</f:selectItem> -->
+				<!-- 	    		</h:selectOneMenu> -->
+				<!-- 	    		<h:message for="tipoCompra"></h:message> -->
+
+
+			</h:panelGrid>
+
+			<h:commandButton value="Guardar" action="#{empleadoMB.guardar}"></h:commandButton>
+
+
+		</h:form>
+		<h:dataTable value="#{empleadoMB.empleados}" var="m" border="1">
+			<h:column>
+				<f:facet name="header">Nombres</f:facet>
 		   		#{m.nombres}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">Apellidos</f:facet>
+			<h:column>
+				<f:facet name="header">Apellidos</f:facet>
 		   		#{m.apellidos}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">DNI</f:facet>
+			<h:column>
+				<f:facet name="header">DNI</f:facet>
 	 	   		#{m.dni}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">Celular</f:facet>
+			<h:column>
+				<f:facet name="header">Celular</f:facet>
 	   			#{m.celular}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">Departamento</f:facet>
+			<h:column>
+				<f:facet name="header">Departamento</f:facet>
 	   			#{m.departamento.nombre}
 		   	</h:column>
-		   	<h:column>
-		   		<f:facet name="header">Cargo</f:facet>
+			<h:column>
+				<f:facet name="header">Cargo</f:facet>
 	   			#{m.cargo.nombre}
 		   	</h:column>
-	   </h:dataTable>
-	   <h:link outcome="welcome">Volver</h:link><br></br>
+		</h:dataTable>
+		<h:link outcome="welcome">Volver</h:link>
+		<br></br>
 	</ui:define>
-	
+
 </ui:composition>
 </html>
